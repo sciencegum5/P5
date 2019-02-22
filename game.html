@@ -32,6 +32,8 @@
             rect(posX, posY, userWidth, userWidth, 5); //creates a box at coordinates (posX, posY) with a size of userwidth x userwidth 
             fill(color(r,g,b));//makes the circle below whatever color is defined
             ellipse(mouseX, mouseY, 10, 10);//makes a small circle on the player's mouse after hiding it
+            stroke(r,g,b);//colors line
+            line(posX + userWidth/2, posY + userWidth/2, mouseX, mouseY);//line from mouse to box
             if ((keyIsDown(65)) && (posX > 0)) {//checks if box is too far left, if to far left stop moving
                 posX -= userSpeed;//moves player left
             }
