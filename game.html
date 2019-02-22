@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>P5 MIN</title>
+    <script src="p5/p5.min.js"></script>
+    <style>
+        body{
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <script>
+            var posX = 50; //X position of player
+            var posY = 50; //Y position of player
+            var r;//Random color values (left blank for definition in the function)
+            var g;//Random color values (left blank for definition in the function)
+            var b;//Random color values (left blank for definition in the function)
+            var w = window.innerWidth;//defines window size
+            var h = window.innerHeight;//defines window size
+            var userSpeed = Number(prompt('10-100'));//sensitivity of movement
+            var userWidth = Number(prompt('1-100'));//size of player
+        function setup(){
+            createCanvas(w,h);//creates area as big as window
+        }
+        function draw(){//runs at 60Hz
+            background(0);//makes a black background
+            fill(color("#2980B9"));//makes the rectangle below blue
+            rect(posX, posY, userWidth, userWidth, 5); //creates a box at coordinates (posX, posY) with a size of userwidth x userwidth 
+            if ((keyIsDown(65)) && (posX > 0)) {
+                posX -= userSpeed;
+            }
+            if ((keyIsDown(68)) && (posX < w - 100)) {
+                posX += userSpeed;
+            }
+            if ((keyIsDown(87)) && (posY > 0)) {
+                posY -= userSpeed;
+            }
+            if ((keyIsDown(83)) && (posY < h - 100)) {
+                posY += userSpeed;
+            }
+            if ((keyIsDown(83)) && (posY < h - 100)) {
+                posY += userSpeed;
+            }
+        }
+        function keyPressed() {
+            if (keyCode == "81"){
+                r = random(256);
+                g = random(256);
+                b = random(256);
+            }
+            if (keyCode == "113"){
+                save("gamescreencap.jpg");
+            }
+        }
+    </script>
+</body>
+</html>
