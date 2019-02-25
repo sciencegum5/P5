@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <title>P5 game</title>
+    <!--Makes a nice title on the tab-->
+    <script src="p5/p5.min.js"></script>
+    <!--references the page to the p5 library-->
+    <style>
+        body {
+            overflow: hidden;
+            /*keeps scroll bars from appearing*/
+            padding: 0;
+            /*ensures no gaps appearon page around edges*/
+            margin: 0;
+            /*ensures no gaps appearon page around edges*/
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //we could refer to an external js file but i would like to keep it all on one simple file
+        var userSpeed = Number(prompt('select your speed ,10-100')); //sensitivity of movement
+        var w = window.innerWidth; //defines window size
+        var h = window.innerHeight; //defines window sized
+        var r = 41; //Random color values (left blank for definition in the function)
+        var g = 128; //Random color values (left blank for definition in the function)
+        var b = 185; //Random color values (left blank for definition in the function)
+        var ball = new ball(); //global object is created here
+        function setup() { //runs once at startup
+            createCanvas(w, h); //creates area as big as window
+        }
+
+        function draw() { //runs at 60Hz
+            background(0); //makes a black background
+            ball.show();
+            ball.move();
+            ball.position();
+        }
+
+        function ball() {
+            this.x = 100;
+            this.y = 100;
+            this.show = function() {
+                fill(color('red'));
+                ellipse(this.x, this.y, 50, 50);
+
+            }
+            this.move = function() {
+                if ((keyIsDown(65)) && (this.x > 0)) { //checks if box is too far left, if to far left stop moving
+                    this.x -= userSpeed; //moves player left
+                }
+                if ((keyIsDown(68)) && (this.x < w - 50)) { //checks if player is too far right
+                    this.x += userSpeed; //moves player right
+                }
+                if ((keyIsDown(87)) && (this.y > 0)) { //checks if player is too far up
+                    this.y -= userSpeed; //moves player up
+                }
+                if ((keyIsDown(83)) && (this.y < h - 50)) { //checks if player is too far down
+                    this.y += userSpeed; //moves player down
+                }
+                this.position = function() {
+                    document.getElementById('coo').innerHTML = "(" + this.x + "," + this.y + ")"; //makes the element into coordia 
+                }
+            }
+        }
+    </script>
+    <h1 id="coo"></h1><!--made an element to display coordinates-->
+</body>
+
+</html>
