@@ -43,7 +43,7 @@
         }
 
         function draw() { //runs at 60Hz
-            background(0); //makes a black background
+            //background(0); //makes a black background
             ball.show();
             ball.move();
             ball.position();
@@ -74,8 +74,9 @@
                     this.y += userSpeed; //moves player down
                 }
                 this.contact = function () {
-                    d = dist(this.x, this.y, ball.x, ball.y);
-                    if (d <= 50) {
+                    d = int(dist(this.x, this.y, ball.x, ball.y));
+                    if (d <= 49) {
+                        window.alert('ez gg');
                         noLoop();
                     }
                 }
