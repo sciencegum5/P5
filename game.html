@@ -60,6 +60,18 @@
                 g = random(256); //random color selection
                 b = random(256); //random color selection
             }
+            //i took the code below from the ref
+            // d is the length of the line
+            // the distance from point 1 to point 2.
+            var d = int(dist(posX, posY, mouseX, mouseY));
+
+            // Let's write d along the line we are drawing!
+            push();
+            translate((posX + mouseX) / 2, (posY + mouseY) / 2);
+            rotate(atan2(mouseY - posY, mouseX - posX));
+            text(nfc(d, 1), 0, -5);
+            pop();
+            // Fancy!
         }
 
         function keyPressed() {

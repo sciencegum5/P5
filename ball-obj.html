@@ -18,6 +18,11 @@
             margin: 0;
             /*ensures no gaps appearon page around edges*/
         }
+
+        h1 {
+            color: azure;
+            position: fixed;
+        }
     </style>
 </head>
 
@@ -30,7 +35,9 @@
         var r = 41; //Random color values (left blank for definition in the function)
         var g = 128; //Random color values (left blank for definition in the function)
         var b = 185; //Random color values (left blank for definition in the function)
+        var d; //distance value
         var ball = new ball(); //global object is created here
+        var ballTwo = new ballTwo(); //another one is created here
         function setup() { //runs once at startup
             createCanvas(w, h); //creates area as big as window
         }
@@ -40,17 +47,51 @@
             ball.show();
             ball.move();
             ball.position();
+            ballTwo.show();
+            ballTwo.move();
+            ballTwo.contact();
+        }
+
+        function ballTwo() {
+            this.x = 100;
+            this.y = 100;
+            this.show = function () {
+                fill(color('blue'));
+                ellipse(this.x, this.y, 50, 50);
+
+            }
+            this.move = function () {
+                if ((keyIsDown(74)) && (this.x > 0)) { //checks if box is too far left, if to far left stop moving
+                    this.x -= userSpeed; //moves player left
+                }
+                if ((keyIsDown(76)) && (this.x < w - 50)) { //checks if player is too far right
+                    this.x += userSpeed; //moves player right
+                }
+                if ((keyIsDown(73)) && (this.y > 0)) { //checks if player is too far up
+                    this.y -= userSpeed; //moves player up
+                }
+                if ((keyIsDown(75)) && (this.y < h - 50)) { //checks if player is too far down
+                    this.y += userSpeed; //moves player down
+                }
+                this.contact = function () {
+                    d = dist(this.x, this.y, ball.x, ball.y);
+                    if (d <= 50) {
+                        noLoop();
+                    }
+                }
+
+            }
         }
 
         function ball() {
-            this.x = 100;
-            this.y = 100;
-            this.show = function() {
+            this.x = 150;
+            this.y = 150;
+            this.show = function () {
                 fill(color('red'));
                 ellipse(this.x, this.y, 50, 50);
 
             }
-            this.move = function() {
+            this.move = function () {
                 if ((keyIsDown(65)) && (this.x > 0)) { //checks if box is too far left, if to far left stop moving
                     this.x -= userSpeed; //moves player left
                 }
@@ -63,13 +104,14 @@
                 if ((keyIsDown(83)) && (this.y < h - 50)) { //checks if player is too far down
                     this.y += userSpeed; //moves player down
                 }
-                this.position = function() {
-                    document.getElementById('coo').innerHTML = "(" + this.x + "," + this.y + ")"; //makes the element into coordia 
+                this.position = function () { //seperate function for displaying the location of the object
+                    document.getElementById('coo').innerHTML = "(" + this.x + "," + this.y + ")" + d; //makes the element into coordia 
                 }
             }
         }
     </script>
-    <h1 id="coo"></h1><!--made an element to display coordinates-->
+    <h1 id="coo"></h1>
+    <!--made an element to display coordinates-->
 </body>
 
 </html>
