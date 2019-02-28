@@ -44,20 +44,20 @@
 
         function draw() { //runs at 60Hz
             //background(0); //makes a black background
-            ball.show();
-            ball.move();
-            ball.position();
-            ballTwo.show();
-            ballTwo.move();
-            ballTwo.contact();
+            ball.show();//makes the ball appear by calling the function  in the object
+            ball.move();//allows the ball to move
+            ball.position();//displays ball position
+            ballTwo.show();//makes the second ball appear
+            ballTwo.move();//allows the ball to move
+            ballTwo.contact();// stops game on contact
         }
 
         function ballTwo() {
-            this.x = 100;
-            this.y = 100;
-            this.show = function () {
-                fill(color('blue'));
-                ellipse(this.x, this.y, 50, 50);
+            this.x = 100;//sets x position
+            this.y = 100;//sets y position
+            this.show = function () {//allows tthe second ball to be shown
+                fill(color('blue'));//makes the ball blue
+                ellipse(this.x, this.y, 50, 50);//makes the the circle
 
             }
             this.move = function () {
@@ -74,10 +74,10 @@
                     this.y += userSpeed; //moves player down
                 }
                 this.contact = function () {
-                    d = int(dist(this.x, this.y, ball.x, ball.y));
-                    if (d <= 49) {
-                        window.alert('ez gg');
-                        noLoop();
+                    d = int(dist(this.x, this.y, ball.x, ball.y));//calculates the distance of the objects
+                    if (d <= 49) {//checks in objects have collided
+                        window.alert('ez gg');//game over message
+                        noLoop();//stops script
                     }
                 }
 
@@ -85,11 +85,11 @@
         }
 
         function ball() {
-            this.x = 150;
-            this.y = 150;
-            this.show = function () {
-                fill(color('red'));
-                ellipse(this.x, this.y, 50, 50);
+            this.x = 150;//sets x position
+            this.y = 150;//sets y position
+            this.show = function () {//makes the function that allows the ball to be shown
+                fill(color('red'));//makes the ball red
+                ellipse(this.x, this.y, 50, 50);//makes the ball
 
             }
             this.move = function () {
