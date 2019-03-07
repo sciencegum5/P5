@@ -40,13 +40,20 @@
         var d; //distance value
         var ball = new ball(); //global object is created here
         var ballTwo = new ballTwo(); //another one is created here
+        let img;
+
+        function preload() {
+            img = loadImage('media/chicken.png');
+        }
+
         function setup() { //runs once at startup
             createCanvas(w, h); //creates area as big as window
-            background(0); //makes a black background
+            //background(0); //makes a black background
+            img.loadPixels();
         }
 
         function draw() { //runs at 60Hz
-            //background(0); //makes a black background
+            background(0); //makes a black background
             ball.show(); //makes the ball appear by calling the function  in the object
             ball.move(); //allows the ball to move
             ball.position(); //displays ball position
@@ -56,51 +63,42 @@
         }
 
         function ball() {
-            this.x = 150; //sets x position
-            this.y = 150; //sets y position
+            this.x = w/2; //sets x position
+            this.y = h/2; //sets y position
             this.show = function () { //makes the function that allows the ball to be shown
-                fill(color(r,g,b)); //makes the ball red
-                strokeWeight(0);
-                ellipse(this.x, this.y, 50, 50); //makes the ball
-
+                imageMode(CENTER);
+                image(img, this.x, this.y, 50, 50);
             }
             this.move = function () {
                 if ((keyIsDown(65)) && (this.x > 0)) { //checks if box is too far left, if to far left stop moving
                     this.x -= userSpeed; //moves player left
-                    r = random(256); //random color selection
-                    g = random(256); //random color selection
-                    b = random(256); //random color selection
+
                 }
                 if ((keyIsDown(68)) && (this.x < w - 50)) { //checks if player is too far right
                     this.x += userSpeed; //moves player right
-                    r = random(256); //random color selection
-                    g = random(256); //random color selection
-                    b = random(256); //random color selection
+
                 }
                 if ((keyIsDown(87)) && (this.y > 0)) { //checks if player is too far up
                     this.y -= userSpeed; //moves player up
-                    r = random(256); //random color selection
-                    g = random(256); //random color selection
-                    b = random(256); //random color selection
+
                 }
                 if ((keyIsDown(83)) && (this.y < h - 50)) { //checks if player is too far down
                     this.y += userSpeed; //moves player down
-                    r = random(256); //random color selection
-                    g = random(256); //random color selection
-                    b = random(256); //random color selection
+
                 }
                 this.position = function () { //seperate function for displaying the location of the object
                     document.getElementById('coo').innerHTML = "(" + this.x + "," + this.y + ")" + d; //makes the element into coordia 
                 }
             }
         }
+
         function ballTwo() {
             this.x = 100; //sets x position
             this.y = 100; //sets y position
             this.show = function () { //allows tthe second ball to be shown
-                fill(color(twor,twog,twob)); //makes the ball blue
+                fill(color(twor, twog, twob)); //makes the ball blue
                 strokeWeight(0);
-                
+
                 ellipse(this.x, this.y, 50, 50); //makes the the circle
 
             }
@@ -139,10 +137,10 @@
 
             }
         }
-
     </script>
     <h1 id="coo"></h1>
     <!--made an element to display coordinates-->
+    <h2 id="p5_loading">Loading... you really shouldnt be seeing this unless theres a problem with the graphics</h1>
 </body>
 
 </html>
